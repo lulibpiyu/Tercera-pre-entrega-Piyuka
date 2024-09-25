@@ -1,0 +1,20 @@
+<h1>{{ torrent.nombre }}</h1>
+<p>{{ torrent.descripcion }}</p>
+<a href="{% url 'descargar_torrent' torrent.id %}">Descargar</a>
+
+<a href="{% url 'home' %}">Volver a Inicio</a>
+
+<h2>Comentarios:</h2>
+<ul>
+    {% for comentario in comentarios %}
+        <li>{{ comentario.contenido }} - {{ comentario.usuario.username }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Dejar un comentario:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ comentario_form.as_p }}
+    <button type="submit">Enviar Comentario</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Cancelar</a>
+</form>

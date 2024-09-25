@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Descargar Torrent{% endblock %}
+
+{% block content %}
+<h2>Descarga de Torrent</h2>
+<p><strong>Nombre:</strong> {{ torrent.nombre }}</p>
+<p><strong>Descripción:</strong> {{ torrent.descripcion }}</p>
+<p><strong>Tamaño:</strong> {{ torrent.archivo.size }} bytes</p>
+<p><strong>Fecha de Subida:</strong> {{ torrent.fecha_subida }}</p>
+
+<a href="{{ torrent.archivo.url }}" download>Descargar {{ torrent.nombre }}</a>
+{% endblock %}

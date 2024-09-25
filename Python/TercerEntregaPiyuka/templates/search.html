@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Buscar Torrents{% endblock %}
+
+{% block content %}
+<h2>Buscar Torrents</h2>
+<form method="get">
+    <input type="text" name="q" placeholder="Buscar torrents..." value="{{ query }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<ul>
+    {% for torrent in results %}
+        <li>
+            {{ torrent.nombre }} - {{ torrent.fecha_subida }}
+            <a href="{% url 'descargar_torrent' torrent.id %}">Descargar</a>
+        </li>
+    {% empty %}
+        <li>No se encontraron torrents.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

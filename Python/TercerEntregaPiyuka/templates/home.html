@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h2>Últimos Torrents</h2>
+{% if torrents %}
+    <ul>
+        {% for torrent in torrents %}
+            <li>
+                <a href="{% url 'detalles' torrent.id %}">{{ torrent.nombre }}</a>
+                {% if torrent.usuario == request.user %}
+                    <form action="{% url 'eliminar_torrent' torrent.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este torrent?');">Eliminar</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay torrents disponibles.</p>
+{% endif %}
+{% endblock %}

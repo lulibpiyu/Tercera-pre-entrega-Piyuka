@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Crear Usuario</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crear Usuario</button>
+</form>
+<a href="{% url 'usuarios' %}">Volver al inicio de sesión</a>
+{% endblock %}
